@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <form method='POST'>
+      {% csrf_token %}
+      {{ profile_form.as_p }}
+      <button type='submit' name='first'>First</button>
+    </form>
+
+    <form method='POST'>
+      {% csrf_token %}
+      {{ profile_form.as_p }}
+      <button type='submit' name='second'>Second</button>
+    </form>
+  </body>
+</html>

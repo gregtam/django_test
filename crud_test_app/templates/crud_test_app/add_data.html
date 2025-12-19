@@ -1,0 +1,9 @@
+{% extends "crud_test_app/home.html" %}
+
+{% block content %}
+  <form action='' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div style='text-align: center'><input type='submit' value='Add Row'></div>
+  </form>
+{% endblock content %}

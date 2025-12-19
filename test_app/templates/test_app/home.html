@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>This is the home page</p>
+  <p>Here are some example links with different ypes of views</p>
+    <li><a href="{% url 'test' %}" class='nav-button'>Test</a></li>
+    <li><a href="{% url 'test_class' %}" class='nav-button'>Test Class</a></li>
+    <li><a href="{% url 'test_template_class' %}" class='nav-button'>Test Template Class</a></li>
+  </p>
+{% endblock content %}

@@ -1,0 +1,29 @@
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+
+<html>
+  <body class='main-body'>
+    {% block header %}
+      <header>
+        <h1 class='header-title'>This is the {{ page_name }} page</h1>
+
+        <nav>
+          <ul style='display: flex;'>
+            <li><a href="{% url 'home' %}" class='nav-button'>Home</a></li>
+            <li><a href="{% url 'user_test_app:home' %}" class='nav-button'>User Test</a></li>
+            <li><a href="{% url 'crud_test_app:home' %}" class='nav-button'>CRUD Test</a></li>
+          </ul>
+        </nav>
+      </header>
+    {% endblock header %}
+
+    <div class='content-body'>
+      {% block content %}
+      {% endblock content %}
+    </div>
+ </body>
+</html>

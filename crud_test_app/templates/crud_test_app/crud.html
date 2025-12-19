@@ -1,0 +1,26 @@
+{% extends "crud_test_app/home.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <form method='post'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <!-- Matches model field -->
+    <input type='text' name='text'></input>
+    <button type='submit' name='add_data'>Add</button>
+  </form>
+
+  <form method='post'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type='text' name='text'></input>
+    <button type='submit' name='update_data'>Update</button>
+  </form>
+
+  <form method='post'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type='text' name='delete_data'></input>
+    <button type='submit'>Delete</button>
+  </form>
+{% endblock content %}

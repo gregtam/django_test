@@ -1,0 +1,9 @@
+{% extends "crud_test_app/home.html" %}
+
+{% block content %}
+ <ul>
+  {% for row in datatable_list %}
+   <li>{{ row.id }} - {{ row.text }} <a href="{% url 'crud_test_app:delete_data' pk=row.pk %}">Delete</a> <a href="{% url 'crud_test_app:update_data' pk=row.pk %}">Update</a></li>
+  {% endfor %}
+ </ul>
+{% endblock content %}
