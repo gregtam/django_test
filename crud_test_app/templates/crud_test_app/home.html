@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <ul>
-    <li><a href="{% url 'crud_test_app:crud_fbv' %}" class='nav-button'>CRUD (FBV)</a></li>
-    <li><a href="{% url 'crud_test_app:crud_cbv' %}" class='nav-button'>CRUD (CBV)</a></li>
-    <li><a href="{% url 'crud_test_app:show_data' %}" class='nav-button'>Show Data</a></li>
-    <li><a href="{% url 'crud_test_app:add_data' %}" class='nav-button'>Add Data</a></li>
+  <ul class="links">
+    <li><a href="{% url 'crud_test_app:multi_form_crud_fbv' %}">Multi Form CRUD (FBV)</a></li>
+    <li><a href="{% url 'crud_test_app:multi_form_crud_cbv' %}">Multi Form CRUD (CBV)</a></li>
+    <li><a href="{% url 'crud_test_app:show_data' %}">Show Data</a></li>
+    <li><a href="{% url 'crud_test_app:add_data' %}">Add Data</a></li>
   </ul>
 {% endblock content %}

@@ -12,10 +12,9 @@ def home(request):
 
 
 def crud(request):
-    # objs = DataTable.objects.all()
-
-    form = DataForm()
-
+    """
+    Not the best pattern, since it violates single responsibility principle
+    """
     if request.method == 'POST':
         # Matches html button name
         if 'add_data' in request.POST:
@@ -40,14 +39,16 @@ def crud(request):
             instance.delete()
             return redirect('crud_test_app:crud_fbv')
 
-    return render(request, 'crud_test_app/crud.html')
+    return render(request, 'crud_test_app/multi_form_crud.html')
 
 
 class CrudView(View):
-    # objs = DataTable.objects.all()
+    """
+    Not the best pattern, since it violates single responsibility principle
+    """
 
     def get(self, request):
-        return render(request, 'crud_test_app/crud.html')
+        return render(request, 'crud_test_app/multi_form_crud.html')
 
     def post(self, request):
         form = DataForm()
@@ -71,7 +72,7 @@ class CrudView(View):
             instance = get_object_or_404(DataTable, id=item_id)
             instance.delete()
 
-        return redirect('crud_test_app:crud_cbv')
+        return redirect('crud_test_app:multi_form_crud_cbv')
 
 
 class ShowDataView(ListView):

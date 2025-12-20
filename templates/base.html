@@ -1,27 +1,46 @@
-<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+{% load static %}  <!DOCTYPE html>
 
-{% load static %}
+<style type="text/tailwindcss">
+  @layer components {
+    .nav-links > li {
+      @apply bg-green-400 hover:bg-red-400 rounded-lg p-2 mx-2 my-3;
+    }
+
+    .links > li > a {
+      @apply inline-block bg-green-200 hover:bg-red-200 rounded-lg p-2 my-2 w-32;
+    }
+
+    button {
+      @apply bg-blue-200 hover:bg-red-200 rounded-lg p-2 m-2;
+    }
+  }
+</style>
+
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.3"></script>
   <link rel="stylesheet" href="{% static 'base.css' %}">
 </head>
 
 <html>
-  <body class='main-body'>
+  <body class="bg-green-50">
     {% block header %}
-      <header>
-        <h1 class='header-title'>This is the {{ page_name }} page</h1>
+      <header class="bg-green-200">
+        <h1 class='text-center text-4xl'>This is the {{ page_name }} page</h1>
 
         <nav>
-          <ul style='display: flex;'>
-            <li><a href="{% url 'home' %}" class='nav-button'>Home</a></li>
-            <li><a href="{% url 'user_test_app:home' %}" class='nav-button'>User Test</a></li>
-            <li><a href="{% url 'crud_test_app:home' %}" class='nav-button'>CRUD Test</a></li>
+          <ul class='flex justify-center nav-links'>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'user_test_app:home' %}">User Test</a></li>
+            <li><a href="{% url 'crud_test_app:home' %}">CRUD Test</a></li>
+            <li><a href="{% url 'htmx_test_app:home' %}">HTMX Test</a></li>
           </ul>
         </nav>
       </header>
     {% endblock header %}
 
-    <div class='content-body'>
+    <div class="w-[95%] max-w-[1024px] mx-auto">
       {% block content %}
       {% endblock content %}
     </div>

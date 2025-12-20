@@ -6,7 +6,9 @@
     {% csrf_token %}
     <button>Logout</button>
   {% else %}
-    <button><a href="{% url 'login' %}">Login</a></button>
-    <button><a href="{% url 'user_test_app:register' %}">Register</a></button>
+    <ul class="links">
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'user_test_app:register' %}">Register</a></li>
+    </ul>
   {% endif %}
 {% endblock content %}
