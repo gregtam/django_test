@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'test_app',
     'user_test_app',
     'crud_test_app',
+    'better_crud_test_app',
     'htmx_test_app',
 ]
 
