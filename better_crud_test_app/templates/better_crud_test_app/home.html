@@ -23,7 +23,7 @@
 
     <form method='post'>
       {% csrf_token %}
-      {{ form|crispy }}
+      {{ add_form|crispy }}
       <button type='submit'>Add</button>
     </form>
   </div>

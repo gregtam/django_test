@@ -23,7 +23,7 @@ def home_view(request):
     
     context = {
         'items': items,
-        'form': form,
+        'add_form': form,
         'page_name': 'Better CRUD'
     }
     return render(request, "better_crud_test_app/home.html", context)
