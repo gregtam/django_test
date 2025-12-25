@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 60px auto; padding: 30px; border: 2px solid #dc3545; border-radius: 8px; text-align: center;">
+<div class='my-60 my-auto'
+    <h2 class='bg-red-500'>Confirm Deletion</h2>
+    
+    <p>Are you sure you want to permanently delete:</p>
+    <h3 style="background: #f8f9fa; padding: 10px;">{{ object.name }}</h3>
+    
+    <p style="color: #666; font-size: 0.9em;">This action cannot be undone.</p>
+
+    <form method="post" style="margin-top: 25px;">
+        {% csrf_token %}
+        
+        <button type="submit" style="padding: 10px 25px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+            Yes, Delete Permanently
+        </button>
+        
+        <div style="margin-top: 15px;">
+            <a href="{% url 'better_crud_test_app:home' %}" style="text-decoration: none; color: #007bff;">
+                No, take me back to the dashboard
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

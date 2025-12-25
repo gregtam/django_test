@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; min-height: 80vh; background-color: #f8f9fa;">
+    <div style="width: 100%; max-width: 500px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e1e4e8;">
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h2 style="font-weight: 700; color: #1a202c; margin-bottom: 8px;">Update Record</h2>
+          <p style="color: #718096; font-size: 0.95rem;">
+            Editing: <span style="color: #4a5568; font-weight: 600;">{{ object.name|default:"This Item" }}</span>
+          </p>
+        </div>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 20px;">
+                {{ form|crispy }}
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 30px;">
+                <button type="submit" style="width: 100%; padding: 12px; background-color: #2d3748; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s;" 
+                    onmouseover="this.style.backgroundColor='#1a202c'" 
+                    onmouseout="this.style.backgroundColor='#2d3748'">
+                    Update Entry
+                </button>
+                
+                <a href="{% url 'better_crud_test_app:home' %}" style="text-align: center; padding: 10px; color: #a0aec0; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
+                    onmouseover="this.style.color='#4a5568'" 
+                    onmouseout="this.style.color='#a0aec0'">
+                    Cancel and go back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

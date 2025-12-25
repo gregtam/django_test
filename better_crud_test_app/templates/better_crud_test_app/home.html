@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+  <div class='flex flex-col justify-center items-center'>
+    <table>
+      <tr>
+        <th>Data</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for item in items %}
+      <tr>
+        <td>{{ item.text }}</td>
+        <td><a href="{% url 'better_crud_test_app:update' pk=item.pk %}"><button>Update</button></a></td>
+        <td><a href="{% url 'better_crud_test_app:delete' pk=item.pk %}"><button>Delete</button></a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    </br>
+
+    <form method='post'>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type='submit'>Add</button>
+    </form>
+  </div>
+{% endblock content%}

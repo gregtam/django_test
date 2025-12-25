@@ -1,0 +1,5 @@
+{% if button_status == 'ON' %}
+  <button hx-get="{% url 'htmx_test_app:htmx_button_toggle' button_status='OFF' %}" hx-swap="outerHTML">ON</button>
+{% else %}
+  <button hx-get="{% url 'htmx_test_app:htmx_button_toggle' button_status='ON' %}" hx-swap="outerHTML">OFF</button>
+{% endif %}
