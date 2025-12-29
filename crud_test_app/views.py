@@ -21,7 +21,7 @@ def crud(request):
             form = DataForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('crud_test_app:crud_fbv')
+                return redirect('crud_test_app:multi_form_crud_fbv')
 
         elif 'update_data' in request.POST:
             item_id = request.POST.get('update_data')
@@ -37,7 +37,7 @@ def crud(request):
             item_id = request.POST.get('delete_data')
             instance = get_object_or_404(DataTable, id=item_id)
             instance.delete()
-            return redirect('crud_test_app:crud_fbv')
+            return redirect('crud_test_app:multi_form_crud_fbv')
 
     return render(request, 'crud_test_app/multi_form_crud.html')
 
