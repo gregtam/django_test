@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import TestUserCreationForm, TestUserChangeForm
-from .models import TestUser
+from .models import TestUser, UserActivity
 
 
 
+# Allows admin to see age field
 class TestUserAdmin(UserAdmin):
     add_form = TestUserCreationForm
     form = TestUserChangeForm
@@ -21,3 +22,4 @@ class TestUserAdmin(UserAdmin):
 
 # Register your models here.
 admin.site.register(TestUser)
+admin.site.register(UserActivity)

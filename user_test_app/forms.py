@@ -1,6 +1,7 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import TestUser
+from .models import TestUser, UserActivity
 
 
 
@@ -25,3 +26,9 @@ class TestUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = TestUser
         fields = UserChangeForm.Meta.fields
+
+
+class UserActivityForm(forms.ModelForm):
+    class Meta:
+        model = UserActivity
+        fields = ['content']
