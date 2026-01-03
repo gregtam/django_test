@@ -12,6 +12,9 @@ class TestUserCreationForm(UserCreationForm):
         # Override the help text for the 'username' field
         self.fields['username'].help_text = None
 
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+
         # Override the help text for the 'password' fields
         # Note: UserCreationForm renders 'password' and 'password2'
         self.fields['password1'].help_text = None
@@ -19,7 +22,7 @@ class TestUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = TestUser
-        fields = UserCreationForm.Meta.fields# + ('password',)
+        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name')
 
 
 class TestUserChangeForm(UserChangeForm):

@@ -8,11 +8,10 @@
       <button>Logout</button>
     </form>
 
-    <p>Hi there {{ user.username }}</p>
+    <p>Hi there {{ user.first_name }} {{ user.last_name }}</p>
     <form method="POST">
       {% csrf_token %}
       {{ form|crispy }}
-      <input name='content'></input>
       <button name='add_user_activity'>Add</button>
     </form>
 

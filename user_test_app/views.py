@@ -14,13 +14,15 @@ def home(request):
 
             if form.is_valid():
                 # User isn't in the form, so we need to save it a different way
-                activity = form.save(commit=False)
-                activity.user = request.user
-                activity.save()
+                row = form.save(commit=False)
+                row.user = request.user
+                row.save()
 
                 return redirect('user_test_app:home')
             else:
                 print(form.errors)
+    else:
+        form = UserActivityForm()
 
     if request.user.is_authenticated:
         user_activity = UserActivity.objects.filter(user=request.user)
@@ -29,7 +31,8 @@ def home(request):
 
     context = {
         'page_name': 'User Test',
-        'user_activity': user_activity
+        'user_activity': user_activity,
+        'form': form
     }
 
     return render(request, 'user_test_app/home.html', context)

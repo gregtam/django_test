@@ -1,9 +1,20 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from .models import Counter
+from .forms import CountForm
+
 # Create your views here.
 def home(request):
-    return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF'})
+    if request.method == 'POST':
+        if 'increase_count' in request.POST:
+            existing_row, created = Counter.objects.get_or_create(user=request.user)
+            existing_row.count += 1
+            existing_row.save()
+
+    counter = Counter.objects.filter(user=request.user)
+
+    return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF', 'counter': counter})
 
 
 def htmx_button_view_url(request, button_text):

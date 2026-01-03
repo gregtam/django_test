@@ -7,3 +7,7 @@ class DataForm(forms.ModelForm):
         model = DataTable
 
         fields = ['text']
+
+        widgets = {
+            'text': forms.TextInput(attrs={'placeholder': 'Enter text...'})
+        }
