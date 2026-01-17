@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
@@ -15,6 +16,14 @@ def home(request):
     counter = Counter.objects.filter(user=request.user)
 
     return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF', 'counter': counter})
+
+
+def increase_count(request):
+    row = Counter.objects.get(user=request.user)
+    row.count += 1
+    row.save()
+
+    return HttpResponse(row.count)
 
 
 def htmx_button_view_url(request, button_text):

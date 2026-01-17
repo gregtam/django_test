@@ -14,7 +14,17 @@
 
   <form method='POST'>
     {% csrf_token %}
-    <button name='increase_count'>Increase Count</button>
+    <button name='increase_count'>Increase Count (Page Refresh)</button>
+  </form>
+
+  <form method='POST'
+    hx-post="{% url 'htmx_test_app:increase_count' %}"
+    hx-target='#user_count'
+  >
+    {% csrf_token %}
+    <button>
+      Increase Count (No Refresh)
+    </button>
   </form>
 
   <table>
@@ -25,7 +35,7 @@
     {% for row in counter %}
       <tr>
         <td>{{ row.user }}</td>
-        <td>{{ row.count }}</td>
+        <td id='user_count'>{{ row.count }}</td>
       </tr>
     {% endfor %}
   </table>
