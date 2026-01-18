@@ -3,11 +3,6 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <form method="POST" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button>Logout</button>
-    </form>
-
     <p>Hi there {{ user.first_name }} {{ user.last_name }}</p>
     <form method="POST">
       {% csrf_token %}
@@ -29,9 +24,5 @@
     </table>
 
   {% else %}
-    <ul class="links">
-      <li><a href="{% url 'login' %}">Login</a></li>
-      <li><a href="{% url 'user_test_app:register' %}">Register</a></li>
-    </ul>
   {% endif %}
 {% endblock content %}

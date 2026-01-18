@@ -7,16 +7,19 @@ from .forms import CountForm
 
 # Create your views here.
 def home(request):
-    if request.method == 'POST':
-        if 'increase_count' in request.POST:
-            existing_row, created = Counter.objects.get_or_create(user=request.user)
-            existing_row.count += 1
-            existing_row.save()
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if 'increase_count' in request.POST:
+                existing_row, created = Counter.objects.get_or_create(user=request.user)
+                existing_row.count += 1
+                existing_row.save()
 
-    counter = Counter.objects.filter(user=request.user)
+        counter = Counter.objects.filter(user=request.user)
 
-    return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF', 'counter': counter})
+        return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF', 'counter': counter})
 
+    else:
+        return render(request, 'htmx_test_app/home.html', {})
 
 def increase_count(request):
     row = Counter.objects.get(user=request.user)

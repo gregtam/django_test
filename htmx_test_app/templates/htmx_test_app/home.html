@@ -2,42 +2,46 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <button hx-get="{% url 'htmx_test_app:htmx_button_url' button_text='first' %}" hx-swap="outerHTML">Test button with url parameter</button>
-  <br>
-  <button hx-get="{% url 'htmx_test_app:htmx_button_htmx' %}" hx-swap="outerHTML" hx-vals='{"button_text": "second"}'>Test button with hx-vals</button>
-  <br>
-  {% if button_status == 'ON' %}
-    <button hx-get="{% url 'htmx_test_app:htmx_button_toggle' button_status='OFF' %}" hx-swap="outerHTML">ON</button>
-  {% else %}
-    <button hx-get="{% url 'htmx_test_app:htmx_button_toggle' button_status='ON' %}" hx-swap="outerHTML">OFF</button>
-  {% endif %}
+  {% if user.is_authenticated %}
+    <button hx-get="{% url 'htmx_test_app:htmx_button_url' button_text='first' %}" hx-swap="outerHTML">Test button with url parameter</button>
+    <br>
+    <button hx-get="{% url 'htmx_test_app:htmx_button_htmx' %}" hx-swap="outerHTML" hx-vals='{"button_text": "second"}'>Test button with hx-vals</button>
+    <br>
+    {% if button_status == 'ON' %}
+      <button hx-get="{% url 'htmx_test_app:htmx_button_toggle' button_status='OFF' %}" hx-swap="outerHTML">ON</button>
+    {% else %}
+      <button hx-get="{% url 'htmx_test_app:htmx_button_toggle' button_status='ON' %}" hx-swap="outerHTML">OFF</button>
+    {% endif %}
 
-  <form method='POST'>
-    {% csrf_token %}
-    <button name='increase_count'>Increase Count (Page Refresh)</button>
-  </form>
+    <form method='POST'>
+      {% csrf_token %}
+      <button name='increase_count'>Increase Count (Page Refresh)</button>
+    </form>
 
-  <form method='POST'
-    hx-post="{% url 'htmx_test_app:increase_count' %}"
-    hx-target='#user_count'
-  >
-    {% csrf_token %}
-    <button>
-      Increase Count (No Refresh)
-    </button>
-  </form>
+    <form method='POST'
+      hx-post="{% url 'htmx_test_app:increase_count' %}"
+      hx-target='#user_count'
+    >
+      {% csrf_token %}
+      <button>
+        Increase Count (No Refresh)
+      </button>
+    </form>
 
-  <table>
-    <tr>
-      <th>User</th>
-      <th>Count</th>
-    </tr>
-    {% for row in counter %}
+    <table>
       <tr>
-        <td>{{ row.user }}</td>
-        <td id='user_count'>{{ row.count }}</td>
+        <th>User</th>
+        <th>Count</th>
       </tr>
-    {% endfor %}
-  </table>
+      {% for row in counter %}
+        <tr>
+          <td>{{ row.user }}</td>
+          <td id='user_count'>{{ row.count }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>Login to view this content</p>
+  {% endif %}
 
 {% endblock content %}
