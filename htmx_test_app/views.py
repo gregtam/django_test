@@ -14,9 +14,10 @@ def home(request):
                 existing_row.count += 1
                 existing_row.save()
 
-        counter = Counter.objects.filter(user=request.user)
+        # Filters the data on the logged in user
+        counter_model = Counter.objects.filter(user=request.user)
 
-        return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF', 'counter': counter})
+        return render(request, 'htmx_test_app/home.html', {'button_status': 'OFF', 'counter': counter_model})
 
     else:
         return render(request, 'htmx_test_app/home.html', {})
